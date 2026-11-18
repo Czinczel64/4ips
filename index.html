@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#06224A" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Jornada 4IPS" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%2306224A'/%3E%3Cg transform='translate(56, 66) scale(3.3)'%3E%3Cpath d='M52 12 L16 64 L52 64 Z' fill='%230066CC'/%3E%3Cpath d='M36 64 L52 38 L52 64 Z' fill='%2306224A'/%3E%3Cpath d='M57 8 L69 8 L69 78 L57 78 Z' fill='%23FFFFFF'/%3E%3Cpath d='M6 88 C24 81, 44 83, 58 93 L58 108 C44 98, 24 96, 6 103 Z' fill='%230066CC'/%3E%3Cpath d='M114 88 C96 81, 76 83, 62 93 L62 108 C76 98, 96 96, 114 103 Z' fill='%23FFFFFF'/%3E%3Cpath d='M48 44 L72 44 L72 92 L48 92 Z' fill='%2306224A'/%3E%3Cpath d='M38 56 L82 56 L82 70 L38 70 Z' fill='%2306224A'/%3E%3Cpath d='M54 48 L66 48 L66 88 L54 88 Z' fill='%23C8102E'/%3E%3Cpath d='M42 58 L78 58 L78 68 L42 68 Z' fill='%23C8102E'/%3E%3C/g%3E%3C/svg%3E" />
+  <title>Jornada 4IPS • 4ª Igreja Presbiteriana de Suzano</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            ipb: {
+              navy: '#06224A',
+              royal: '#0066CC',
+              crimson: '#C8102E',
+              light: '#F4F7FB',
+              border: '#DCE5F2'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F4F7FB;
+      color: #06224A;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab-active {
+      background-color: #06224A;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(6, 34, 74, 0.2);
+    }
+    .card-shadow {
+      box-shadow: 0 2px 10px rgba(6, 34, 74, 0.04);
+    }
+    @keyframes pulse-soft {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    .animate-pulse-soft {
+      animation: pulse-soft 2.2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased">
+
+  <!-- HEADER OFICIAL -->
+  <header class="bg-white border-b border-ipb-border sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <!-- Logotipo Vetorial Fiel 4IPS -->
+      <div class="flex items-center gap-3">
+        <svg class="w-11 h-11 shrink-0" viewBox="0 0 120 115" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo 4ª Igreja Presbiteriana de Suzano">
+          <!-- Triângulo diagonal do 4 (Azul Royal) -->
+          <path d="M52 10 L14 64 L52 64 Z" fill="#0066CC"/>
+          <!-- Recorte interno branco + triângulo interno -->
+          <path d="M35 64 L52 38 L52 64 Z" fill="#FFFFFF"/>
+          <!-- Haste vertical do 4 (Azul Marinho) -->
+          <path d="M57 6 L70 6 L70 78 L57 78 Z" fill="#06224A"/>
+          <!-- Bíblia Aberta - Página Esquerda (Azul Royal) -->
+          <path d="M4 88 C23 80, 44 82, 58 93 L58 109 C44 98, 23 96, 4 104 Z" fill="#0066CC"/>
+          <!-- Bíblia Aberta - Página Direita (Azul Marinho) -->
+          <path d="M116 88 C97 80, 76 82, 62 93 L62 109 C76 98, 97 96, 116 104 Z" fill="#06224A"/>
+          <!-- Contorno branco da Cruz -->
+          <path d="M48 43 L72 43 L72 93 L48 93 Z" fill="#FFFFFF"/>
+          <path d="M37 55 L83 55 L83 71 L37 71 Z" fill="#FFFFFF"/>
+          <!-- Cruz Vermelha Central -->
+          <path d="M54 47 L66 47 L66 89 L54 89 Z" fill="#C8102E"/>
+          <path d="M41 59 L79 59 L79 67 L41 67 Z" fill="#C8102E"/>
+        </svg>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-extrabold text-sm sm:text-base tracking-tight text-ipb-navy leading-tight">
+              4ª IGREJA PRESBITERIANA DE SUZANO
+            </h1>
+          </div>
+          <p class="text-[11px] sm:text-xs font-medium text-ipb-royal">
+            Uma Igreja Bíblica, Acolhedora e Serva
+          </p>
+        </div>
+      </div>
+
+      <!-- Ações Rápidas Header -->
+      <div class="flex items-center gap-2">
+        <button id="btn-install-app" onclick="handleInstallClick()" class="inline-flex items-center gap-1.5 bg-ipb-royal hover:bg-ipb-navy text-white text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"/>
+          </svg>
+          <span>Instalar App</span>
+        </button>
+
+        <button onclick="openModal('modal-mvp')" class="hidden sm:inline-flex items-center gap-1.5 bg-ipb-light hover:bg-blue-100 text-ipb-navy border border-ipb-border text-xs font-semibold px-3 py-2 rounded-xl transition">
+          <span>Sobre o Portal</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="max-w-5xl w-full mx-auto px-4 py-5 space-y-5 flex-1">
+
+    <!-- CARTÃO DE PERFIL E PROGRESSO -->
+    <section class="bg-white rounded-2xl p-5 border border-ipb-border card-shadow">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-ipb-navy to-ipb-royal text-white flex items-center justify-center font-black text-xl shadow-inner shrink-0" id="user-avatar">
+            4IP
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h2 class="font-bold text-lg text-ipb-navy" id="user-name-display">Irmão(ã) Peregrino</h2>
+              <button onclick="editUserName()" class="text-xs text-ipb-royal hover:underline font-medium">Editar nome</button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-ipb-royal" id="level-title">
+              Nível 1 • Semeador Iniciante
+            </p>
+          </div>
+        </div>
+
+        <!-- Contador de Constância & Escudo da Graça -->
+        <div class="flex items-center gap-2.5 self-start sm:self-center">
+          <div class="bg-red-50 border border-red-200 px-3.5 py-2 rounded-xl flex items-center gap-2">
+            <span class="text-lg">🔥</span>
+            <div>
+              <div class="text-sm font-black text-ipb-crimson leading-none" id="streak-count">4 dias</div>
+              <div class="text-[10px] font-semibold text-red-800 uppercase tracking-wider mt-0.5">Constância</div>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 px-3.5 py-2 rounded-xl flex items-center gap-2" title="Protege sua constância caso você falhe um dia por imprevisto">
+            <span class="text-lg">🛡️</span>
+            <div>
+              <div class="text-sm font-black text-ipb-royal leading-none" id="shields-count">2 Escudos</div>
+              <div class="text-[10px] font-semibold text-ipb-navy uppercase tracking-wider mt-0.5">Da Graça</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de XP -->
+      <div class="mt-4">
+        <div class="flex justify-between text-xs font-semibold mb-1.5">
+          <span class="text-slate-600">Progresso na Jornada Espiritual</span>
+          <span class="text-ipb-navy"><span id="xp-current">140</span> / <span id="xp-next">250</span> XP</span>
+        </div>
+        <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden border border-slate-200/70">
+          <div id="xp-bar" class="h-full bg-gradient-to-r from-ipb-navy via-ipb-royal to-blue-500 rounded-full transition-all duration-500" style="width: 56%"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO ENTRE ABAS -->
+    <nav class="grid grid-cols-4 gap-1.5 bg-white p-1.5 rounded-2xl border border-ipb-border card-shadow">
+      <button onclick="switchTab('jornada')" id="tab-btn-jornada" class="tab-active py-2.5 px-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5">
+        <span>📖</span><span>Minha Jornada</span>
+      </button>
+      <button onclick="switchTab('comunidade')" id="tab-btn-comunidade" class="text-slate-600 hover:bg-slate-50 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5">
+        <span>🤝</span><span>Comunidade</span>
+      </button>
+      <button onclick="switchTab('conquistas')" id="tab-btn-conquistas" class="text-slate-600 hover:bg-slate-50 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5">
+        <span>🏅</span><span>Conquistas</span>
+      </button>
+      <button onclick="switchTab('lideranca')" id="tab-btn-lideranca" class="text-slate-600 hover:bg-slate-50 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5">
+        <span>📊</span><span>Liderança</span>
+      </button>
+    </nav>
+
+    <!-- ABA 1: MINHA JORNADA -->
+    <div id="view-jornada" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- Card 1: Leitura Bíblica Diária -->
+        <div class="bg-white rounded-2xl p-5 border border-ipb-border card-shadow flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-ipb-royal bg-blue-50 px-2.5 py-1 rounded-lg">Palavra Diária • +40 XP</span>
+              <span class="text-xs font-semibold text-slate-400">Hoje</span>
+            </div>
+            <h3 class="font-bold text-base text-ipb-navy mt-1" id="daily-reading-title">Salmos 119:1-16 e Romanos 8</h3>
+            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+              "Lâmpada para os meus pés é a tua palavra e, luz para os meus caminhos." Leia com atenção e marque sua constância de hoje.
+            </p>
+          </div>
+          <button id="btn-reading" onclick="toggleHabit('reading', 40)" class="mt-4 w-full py-3 px-4 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2 bg-ipb-royal hover:bg-ipb-navy text-white shadow-sm">
+            <span>✓ Marcar Leitura Concluída</span>
+          </button>
+        </div>
+
+        <!-- Card 2: Cronômetro de Oração -->
+        <div class="bg-white rounded-2xl p-5 border border-ipb-border card-shadow flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-ipb-navy bg-slate-100 px-2.5 py-1 rounded-lg">Devocional & Oração • +35 XP</span>
+              <span class="text-xs font-mono font-bold text-ipb-royal" id="prayer-timer-display">05:00</span>
+            </div>
+            <h3 class="font-bold text-base text-ipb-navy mt-1">Momento de Oração e Intercessão</h3>
+            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+              Ore pela sua família, pelos missionários da IPB, pelos enfermos e pelos cultos de domingo em Suzano.
+            </p>
+          </div>
+          <div class="mt-4 flex gap-2">
+            <button id="btn-prayer-timer" onclick="togglePrayerTimer()" class="flex-1 py-3 px-3 rounded-xl font-bold text-xs sm:text-sm transition bg-slate-100 hover:bg-slate-200 text-ipb-navy">
+              ▶ Iniciar 5 min
+            </button>
+            <button id="btn-prayer-done" onclick="toggleHabit('prayer', 35)" class="flex-1 py-3 px-3 rounded-xl font-bold text-xs sm:text-sm transition bg-ipb-navy hover:bg-ipb-royal text-white">
+              ✓ Concluir Oração
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: Memorização de Versículo -->
+        <div class="bg-white rounded-2xl p-5 border border-ipb-border card-shadow flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-ipb-crimson bg-red-50 px-2.5 py-1 rounded-lg">Guardar no Coração • +30 XP</span>
+              <button onclick="toggleVerseBlur()" class="text-xs font-bold text-ipb-royal hover:underline" id="btn-verse-blur">
+                👁️ Treinar (Ocultar)
+              </button>
+            </div>
+            <h3 class="font-bold text-sm text-ipb-navy mt-1" id="weekly-verse-ref">Efésios 2:8-9</h3>
+            <p id="weekly-verse-text" class="text-xs sm:text-sm font-medium text-slate-700 bg-ipb-light p-3 rounded-xl border border-ipb-border mt-2 transition-all duration-300 select-none">
+              "Porque pela graça sois salvos, mediante a fé; e isto não vem de vós; é dom de Deus; não de obras, para que ninguém se glorie."
+            </p>
+          </div>
+          <button id="btn-verse" onclick="toggleHabit('verse', 30)" class="mt-4 w-full py-3 px-4 rounded-xl font-bold text-sm transition bg-ipb-royal hover:bg-ipb-navy text-white">
+            ✓ Versículo Memorizado
+          </button>
+        </div>
+
+        <!-- Card 4: Presença na Igreja (EBD e Cultos) -->
+        <div class="bg-white rounded-2xl p-5 border border-ipb-border card-shadow flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">Comunhão Presencial • +60 XP</span>
+              <span class="text-xs font-semibold text-slate-400">Semanal</span>
+            </div>
+            <h3 class="font-bold text-base text-ipb-navy mt-1">Cultos e Escola Bíblica Dominical</h3>
+            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+              "Não deixemos de congregar-nos..." Registre sua presença na EBD, no Culto Solene de Domingo ou na Reunião de Oração.
+            </p>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <button id="btn-ebd" onclick="toggleHabit('ebd', 60)" class="py-3 px-3 rounded-xl font-bold text-xs sm:text-sm transition bg-ipb-navy hover:bg-ipb-royal text-white">
+              ✓ Check-in EBD
+            </button>
+            <button id="btn-culto" onclick="toggleHabit('culto', 60)" class="py-3 px-3 rounded-xl font-bold text-xs sm:text-sm transition bg-ipb-crimson hover:bg-red-800 text-white">
+              ✓ Check-in Culto
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ABA 2: COMUNIDADE -->
+    <div id="view-comunidade" class="hidden space-y-4">
+      <!-- Meta Coletiva da Congregação -->
+      <section class="bg-gradient-to-r from-ipb-navy to-ipb-royal text-white rounded-2xl p-5 shadow-md">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest bg-white/15 px-2.5 py-1 rounded-full">Desafio Coletivo da 4ª IPS</span>
+            <h3 class="font-extrabold text-lg sm:text-xl mt-2" id="community-goal-title">Ler 1.500 Capítulos Juntos neste Mês</h3>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-black" id="community-chapters-count">1.142 / 1.500</div>
+            <div class="text-xs text-blue-100">capítulos lidos pelos irmãos</div>
+          </div>
+        </div>
+        <div class="w-full h-3.5 bg-black/25 rounded-full overflow-hidden mt-4">
+          <div id="community-goal-bar" class="h-full bg-white rounded-full transition-all duration-500" style="width: 76%"></div>
+        </div>
+        <p class="text-xs text-blue-100 mt-2.5">
+          Cada leitura marcada na aba <strong>Minha Jornada</strong> soma automaticamente para o alvo da nossa igreja!
+        </p>
+      </section>
+
+      <!-- Mural de Edificação Mútua -->
+      <section class="bg-white rounded-2xl p-5 border border-ipb-border card-shadow space-y-4">
+        <div>
+          <h3 class="font-bold text-base text-ipb-navy">Mural de Encorajamento e Oração</h3>
+          <p class="text-xs text-slate-500">Compartilhe um versículo que falou ao seu coração ou um pedido de oração com a igreja.</p>
+        </div>
+
+        <form onsubmit="postMuralMessage(event)" class="flex flex-col sm:flex-row gap-2">
+          <input id="mural-input" type="text" maxlength="180" required placeholder="Escreva uma palavra de edificação ou pedido de oração..." class="flex-1 bg-ipb-light border border-ipb-border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-ipb-royal" />
+          <button type="submit" class="bg-ipb-navy hover:bg-ipb-royal text-white font-bold text-sm px-5 py-2.5 rounded-xl transition shrink-0">
+            Publicar
+          </button>
+        </form>
+
+        <div id="mural-list" class="space-y-3 pt-2">
+          <!-- Mensagens renderizadas via JS -->
+        </div>
+      </section>
+    </div>
+
+    <!-- ABA 3: CONQUISTAS -->
+    <div id="view-conquistas" class="hidden space-y-4">
+      <div class="bg-white rounded-2xl p-5 border border-ipb-border card-shadow">
+        <h3 class="font-bold text-base text-ipb-navy">Marcos da Caminhada Cristã</h3>
+        <p class="text-xs text-slate-500 mb-4">Conquistas desbloqueadas pela sua constância pessoal — sem rankings competitivos.</p>
+        <div id="badges-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <!-- Medalhas renderizadas via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ABA 4: LIDERANÇA (PAINEL ADMIN DEMO) -->
+    <div id="view-lideranca" class="hidden space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="bg-white p-4 rounded-2xl border border-ipb-border card-shadow">
+          <div class="text-xs font-semibold text-slate-500">Membros Ativos na Semana</div>
+          <div class="text-2xl font-black text-ipb-navy mt-1">84 irmãos</div>
+          <div class="text-xs font-semibold text-emerald-600 mt-1">↑ +12% em relação ao mês passado</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-ipb-border card-shadow">
+          <div class="text-xs font-semibold text-slate-500">Média de Leitura Semanal</div>
+          <div class="text-2xl font-black text-ipb-royal mt-1">4,6 dias</div>
+          <div class="text-xs text-slate-500 mt-1">Dados agregados e anônimos</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-ipb-border card-shadow">
+          <div class="text-xs font-semibold text-slate-500">Check-ins na EBD (Domingo)</div>
+          <div class="text-2xl font-black text-ipb-crimson mt-1">67 presentes</div>
+          <div class="text-xs text-slate-500 mt-1">Último domingo</div>
+        </div>
+      </div>
+
+      <section class="bg-white rounded-2xl p-5 border border-ipb-border card-shadow space-y-4">
+        <div>
+          <h3 class="font-bold text-base text-ipb-navy">Configurar Plano da Congregação (Conselho / EBD)</h3>
+          <p class="text-xs text-slate-500">Atualize a leitura do dia, o versículo da semana ou o desafio mensal. As alterações refletem imediatamente nas abas.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-ipb-navy mb-1">Leitura Bíblica do Dia</label>
+            <input id="admin-reading" type="text" value="Salmos 119:1-16 e Romanos 8" class="w-full bg-ipb-light border border-ipb-border rounded-xl px-3 py-2 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-ipb-navy mb-1">Referência do Versículo da Semana</label>
+            <input id="admin-verse-ref" type="text" value="Efésios 2:8-9" class="w-full bg-ipb-light border border-ipb-border rounded-xl px-3 py-2 text-sm" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-xs font-bold text-ipb-navy mb-1">Texto do Versículo</label>
+            <input id="admin-verse-text" type="text" value="&quot;Porque pela graça sois salvos, mediante a fé; e isto não vem de vós; é dom de Deus; não de obras, para que ninguém se glorie.&quot;" class="w-full bg-ipb-light border border-ipb-border rounded-xl px-3 py-2 text-sm" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-xs font-bold text-ipb-navy mb-1">Título do Desafio Coletivo do Mês</label>
+            <input id="admin-goal-title" type="text" value="Ler 1.500 Capítulos Juntos neste Mês" class="w-full bg-ipb-light border border-ipb-border rounded-xl px-3 py-2 text-sm" />
+          </div>
+        </div>
+
+        <button onclick="saveAdminSettings()" class="bg-ipb-navy hover:bg-ipb-royal text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">
+          Salvar e Publicar para a Igreja
+        </button>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="bg-white border-t border-ipb-border mt-8 py-4 px-4 text-center text-xs text-slate-500">
+    <p class="font-bold text-ipb-navy">4ª Igreja Presbiteriana de Suzano • 4ips.org.br</p>
+    <p class="mt-0.5">Uma Igreja Bíblica, Acolhedora e Serva • Suzano - SP</p>
+  </footer>
+
+  <!-- MODAL INSTRUÇÕES DE INSTALAÇÃO IOS / MANUAL -->
+  <div id="modal-ios" class="hidden fixed inset-0 bg-ipb-navy/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-ipb-border space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-extrabold text-lg text-ipb-navy">Instalar App no Celular</h3>
+        <button onclick="closeModal('modal-ios')" class="text-slate-400 hover:text-ipb-navy font-bold text-lg">✕</button>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        Adicione o portal da <strong>4ª IPS</strong> à tela inicial do seu celular para acessar com um toque, como um aplicativo nativo:
+      </p>
+      <div class="bg-ipb-light p-3.5 rounded-xl border border-ipb-border space-y-2 text-xs text-ipb-navy">
+        <p><strong>📱 No iPhone (Safari):</strong> Toque no ícone de <strong>Compartilhar</strong> (quadrado com seta para cima na barra inferior) e escolha <strong>"Adicionar à Tela de Início"</strong>.</p>
+        <p><strong>🤖 No Android (Chrome):</strong> Toque nos <strong>3 pontinhos</strong> no canto superior direito e selecione <strong>"Instalar aplicativo"</strong> ou <strong>"Adicionar à tela inicial"</strong>.</p>
+      </div>
+      <button onclick="closeModal('modal-ios')" class="w-full bg-ipb-navy text-white font-bold py-2.5 rounded-xl text-sm">
+        Entendi
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL PROJETO & MVP -->
+  <div id="modal-mvp" class="hidden fixed inset-0 bg-ipb-navy/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-ipb-border space-y-3 max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <h3 class="font-extrabold text-lg text-ipb-navy">Propósito do Portal 4IPS</h3>
+        <button onclick="closeModal('modal-mvp')" class="text-slate-400 hover:text-ipb-navy font-bold text-lg">✕</button>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        Este portal foi desenhado para apoiar a caminhada devocional e comunitária da <strong>4ª Igreja Presbiteriana de Suzano</strong>, unindo simplicidade para todas as idades e encorajamento mútuo:
+      </p>
+      <ul class="text-xs text-slate-700 space-y-2 list-disc pl-4">
+        <li><strong>Constância sem Culpa:</strong> O <em>Escudo da Graça</em> evita a frustração quando um irmão perde um dia por doença ou viagem.</li>
+        <li><strong>Edificação sem Vaidade:</strong> Não há ranking individual; o foco está na meta coletiva da congregação e nos marcos pessoais.</li>
+        <li><strong>Privacidade Pastoral:</strong> O painel da liderança exibe apenas indicadores gerais da igreja, preservando a privacidade de cada membro.</li>
+      </ul>
+      <button onclick="closeModal('modal-mvp')" class="w-full bg-ipb-royal text-white font-bold py-2.5 rounded-xl text-sm mt-2">
+        Voltar à Jornada
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // ESTADO INICIAL COM PERSISTÊNCIA LOCALSTORAGE
+    const DEFAULT_STATE = {
+      userName: 'Irmão(ã) Peregrino',
+      xp: 140,
+      streak: 4,
+      shields: 2,
+      communityChapters: 1142,
+      habits: {
+        reading: false,
+        prayer: false,
+        verse: false,
+        ebd: false,
+        culto: false
+      },
+      config: {
+        readingTitle: 'Salmos 119:1-16 e Romanos 8',
+        verseRef: 'Efésios 2:8-9',
+        verseText: '"Porque pela graça sois salvos, mediante a fé; e isto não vem de vós; é dom de Deus; não de obras, para que ninguém se glorie."',
+        goalTitle: 'Ler 1.500 Capítulos Juntos neste Mês'
+      },
+      mural: [
+        { id: 1, author: 'Presb. Carlos', time: 'Há 2h', text: 'Oremos pela nossa Escola Bíblica Dominical deste domingo e pelos novos visitantes!', amens: 14, prayers: 9 },
+        { id: 2, author: 'Irmã Mariana', time: 'Há 5h', text: 'Romanos 8 hoje pela manhã renovou minhas forças. Nada pode nos separar do amor de Cristo!', amens: 19, prayers: 4 }
+      ]
+    };
+
+    let state = JSON.parse(localStorage.getItem('4ips_jornada_state')) || DEFAULT_STATE;
+
+    function saveState() {
+      localStorage.setItem('4ips_jornada_state', JSON.stringify(state));
+      renderAll();
+    }
+
+    // CÁLCULO DE NÍVEL BÍBLICO
+    const LEVELS = [
+      { min: 0, max: 250, title: 'Nível 1 • Semeador Iniciante' },
+      { min: 250, max: 600, title: 'Nível 2 • Discípulo Constante' },
+      { min: 600, max: 1100, title: 'Nível 3 • Bereano Aplicado' },
+      { min: 1100, max: 2000, title: 'Nível 4 • Coluna na Congregação' },
+      { min: 2000, max: 99999, title: 'Nível 5 • Peregrino Perseverante' }
+    ];
+
+    function getLevelInfo(xp) {
+      return LEVELS.find(l => xp >= l.min && xp < l.max) || LEVELS[LEVELS.length - 1];
+    }
+
+    // RENDERIZAÇÃO GERAL
+    function renderAll() {
+      // Perfil e XP
+      document.getElementById('user-name-display').textContent = state.userName;
+      const initials = state.userName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || '4IP';
+      document.getElementById('user-avatar').textContent = initials;
+
+      const lvl = getLevelInfo(state.xp);
+      document.getElementById('level-title').textContent = lvl.title;
+      document.getElementById('streak-count').textContent = `${state.streak} dias`;
+      document.getElementById('shields-count').textContent = `${state.shields} Escudos`;
+      document.getElementById('xp-current').textContent = state.xp;
+      document.getElementById('xp-next').textContent = lvl.max;
+
+      const pct = Math.min(100, Math.round(((state.xp - lvl.min) / (lvl.max - lvl.min)) * 100));
+      document.getElementById('xp-bar').style.width = `${pct}%`;
+
+      // Configs
+      document.getElementById('daily-reading-title').textContent = state.config.readingTitle;
+      document.getElementById('weekly-verse-ref').textContent = state.config.verseRef;
+      document.getElementById('weekly-verse-text').textContent = state.config.verseText;
+      document.getElementById('community-goal-title').textContent = state.config.goalTitle;
+
+      // Meta Coletiva
+      document.getElementById('community-chapters-count').textContent = `${state.communityChapters.toLocaleString('pt-BR')} / 1.500`;
+      const commPct = Math.min(100, Math.round((state.communityChapters / 1500) * 100));
+      document.getElementById('community-goal-bar').style.width = `${commPct}%`;
+
+      // Botões de Hábitos
+      updateHabitBtn('btn-reading', state.habits.reading, '✓ Marcar Leitura Concluída', '✅ Leitura Registrada (+40 XP)');
+      updateHabitBtn('btn-prayer-done', state.habits.prayer, '✓ Concluir Oração', '✅ Oração Registrada');
+      updateHabitBtn('btn-verse', state.habits.verse, '✓ Versículo Memorizado', '✅ Memorizado (+30 XP)');
+      updateHabitBtn('btn-ebd', state.habits.ebd, '✓ Check-in EBD', '✅ Presente na EBD');
+      updateHabitBtn('btn-culto', state.habits.culto, '✓ Check-in Culto', '✅ Presente no Culto');
+
+      renderMural();
+      renderBadges();
+    }
+
+    function updateHabitBtn(id, isDone, defaultText, doneText) {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      if (isDone) {
+        btn.textContent = doneText;
+        btn.classList.remove('bg-ipb-royal', 'bg-ipb-navy', 'bg-ipb-crimson', 'hover:bg-ipb-navy', 'hover:bg-ipb-royal', 'hover:bg-red-800');
+        btn.classList.add('bg-emerald-600', 'text-white');
+      } else {
+        btn.textContent = defaultText;
+        btn.classList.remove('bg-emerald-600');
+        if (id === 'btn-culto') btn.classList.add('bg-ipb-crimson', 'hover:bg-red-800');
+        else if (id === 'btn-prayer-done' || id === 'btn-ebd') btn.classList.add('bg-ipb-navy', 'hover:bg-ipb-royal');
+        else btn.classList.add('bg-ipb-royal', 'hover:bg-ipb-navy');
+      }
+    }
+
+    // MARCAR / DESMARCAR HÁBITOS
+    function toggleHabit(key, points) {
+      const wasDone = state.habits[key];
+      state.habits[key] = !wasDone;
+
+      if (!wasDone) {
+        state.xp += points;
+        if (key === 'reading') {
+          state.streak += 1;
+          state.communityChapters += 2;
+        }
+      } else {
+        state.xp = Math.max(0, state.xp - points);
+        if (key === 'reading') {
+          state.streak = Math.max(0, state.streak - 1);
+          state.communityChapters = Math.max(0, state.communityChapters - 2);
+        }
+      }
+      saveState();
+    }
+
+    // CRONÔMETRO DE ORAÇÃO
+    let timerInterval = null;
+    let secondsRemaining = 300;
+
+    function togglePrayerTimer() {
+      const btn = document.getElementById('btn-prayer-timer');
+      const display = document.getElementById('prayer-timer-display');
+
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        btn.textContent = '▶ Retomar';
+      } else {
+        btn.textContent = '⏸ Pausar';
+        timerInterval = setInterval(() => {
+          secondsRemaining--;
+          const mins = String(Math.floor(secondsRemaining / 60)).padStart(2, '0');
+          const secs = String(secondsRemaining % 60).padStart(2, '0');
+          display.textContent = `${mins}:${secs}`;
+
+          if (secondsRemaining <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            secondsRemaining = 300;
+            display.textContent = '05:00';
+            btn.textContent = '▶ Iniciar 5 min';
+            if (!state.habits.prayer) toggleHabit('prayer', 35);
+          }
+        }, 1000);
+      }
+    }
+
+    // OCULTAR VERSÍCULO PARA MEMORIZAÇÃO
+    let verseHidden = false;
+    function toggleVerseBlur() {
+      verseHidden = !verseHidden;
+      const el = document.getElementById('weekly-verse-text');
+      const btn = document.getElementById('btn-verse-blur');
+      if (verseHidden) {
+        el.classList.add('blur-xs');
+        btn.textContent = '👁️ Revelar Texto';
+      } else {
+        el.classList.remove('blur-xs');
+        btn.textContent = '👁️ Treinar (Ocultar)';
+      }
+    }
+
+    // MURAL DA COMUNIDADE
+    function renderMural() {
+      const container = document.getElementById('mural-list');
+      container.innerHTML = state.mural.map(item => `
+        <div class="bg-ipb-light border border-ipb-border rounded-xl p-3.5">
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span class="font-bold text-ipb-navy">${item.author}</span>
+            <span class="text-slate-400">${item.time}</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${item.text}</p>
+          <div class="flex items-center gap-3 mt-2.5">
+            <button onclick="reactMural(${item.id}, 'amens')" class="text-xs font-semibold text-ipb-royal bg-white border border-ipb-border px-2.5 py-1 rounded-lg hover:bg-blue-50 transition">
+              🙏 Amém (${item.amens})
+            </button>
+            <button onclick="reactMural(${item.id}, 'prayers')" class="text-xs font-semibold text-ipb-crimson bg-white border border-ipb-border px-2.5 py-1 rounded-lg hover:bg-red-50 transition">
+              ❤️ Orando por você (${item.prayers})
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function postMuralMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('mural-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      state.mural.unshift({
+        id: Date.now(),
+        author: state.userName,
+        time: 'Agora mesmo',
+        text,
+        amens: 1,
+        prayers: 0
+      });
+      input.value = '';
+      saveState();
+    }
+
+    function reactMural(id, field) {
+      const post = state.mural.find(m => m.id === id);
+      if (post) {
+        post[field]++;
+        saveState();
+      }
+    }
+
+    // CONQUISTAS
+    function renderBadges() {
+      const badges = [
+        { icon: '📖', title: 'Primeiros Passos', desc: 'Concluiu a primeira leitura bíblica no portal', unlocked: state.habits.reading || state.xp >= 140 },
+        { icon: '🔥', title: 'Semana na Palavra', desc: 'Manteve 5 dias seguidos de constância', unlocked: state.streak >= 5 },
+        { icon: '⛪', title: 'Assíduo na Casa do Senhor', desc: 'Fez check-in na EBD e no Culto', unlocked: state.habits.ebd && state.habits.culto },
+        { icon: '🙏', title: 'Guerreiro de Oração', desc: 'Completou seu momento devocional diário', unlocked: state.habits.prayer },
+        { icon: '🧠', title: 'Tesouro no Coração', desc: 'Memorizou o versículo da semana', unlocked: state.habits.verse },
+        { icon: '🛡️', title: 'Bereano de Suzano', desc: 'Alcançou 250 XP na jornada espiritual', unlocked: state.xp >= 250 }
+      ];
+
+      document.getElementById('badges-grid').innerHTML = badges.map(b => `
+        <div class="p-4 rounded-xl border ${b.unlocked ? 'bg-blue-50/60 border-ipb-royal/40' : 'bg-slate-50 border-slate-200 opacity-60'} flex items-start gap-3">
+          <div class="text-2xl">${b.unlocked ? b.icon : '🔒'}</div>
+          <div>
+            <h4 class="font-bold text-xs sm:text-sm text-ipb-navy">${b.title}</h4>
+            <p class="text-[11px] text-slate-600 mt-0.5">${b.desc}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ADMIN / LIDERANÇA
+    function saveAdminSettings() {
+      state.config.readingTitle = document.getElementById('admin-reading').value;
+      state.config.verseRef = document.getElementById('admin-verse-ref').value;
+      state.config.verseText = document.getElementById('admin-verse-text').value;
+      state.config.goalTitle = document.getElementById('admin-goal-title').value;
+      saveState();
+      switchTab('jornada');
+    }
+
+    // EDITAR NOME
+    function editUserName() {
+      const newName = prompt('Digite seu nome ou como gostaria de ser chamado na congregação:', state.userName);
+      if (newName && newName.trim()) {
+        state.userName = newName.trim();
+        saveState();
+      }
+    }
+
+    // ABAS E MODAIS
+    function switchTab(tabName) {
+      ['jornada', 'comunidade', 'conquistas', 'lideranca'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.add('hidden');
+        const btn = document.getElementById(`tab-btn-${t}`);
+        btn.classList.remove('tab-active');
+        btn.classList.add('text-slate-600');
+      });
+      document.getElementById(`view-${tabName}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+      activeBtn.classList.add('tab-active');
+      activeBtn.classList.remove('text-slate-600');
+    }
+
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    // LÓGICA DE INSTALAÇÃO PWA (ANDROID / CHROME + FALLBACK IOS)
+    let deferredPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    async function handleInstallClick() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') deferredPrompt = null;
+      } else {
+        openModal('modal-ios');
+      }
+    }
+
+    // REGISTRO DO SERVICE WORKER PARA PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+
+    // INICIALIZAR
+    renderAll();
+  </script>
+</body>
+</html>
